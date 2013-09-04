@@ -5,8 +5,19 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!--Import jstl library -->
+
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%--<%@ page import="org.*" %> --%>
+<%@page import = "java.util.List" %>
+<%@page import = "org.*" %> 
+<%@page import = "DAL.*"%>
+<%@page import = "ObjectBusiness.*"%>
+<%@page import = "Business_Model.*"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -181,6 +192,7 @@ $(document).pngFix( );
 </head>
 <body> 
 <!-- Start: page-top-outer -->
+<form  method="get" name="Account">
 <div id="page-top-outer">    
 
 <!-- Start: page-top -->
@@ -416,12 +428,12 @@ $(document).pngFix( );
 		<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
 		<tr>
 			<th valign="top">First Name:</th>
-			<td><input type="text" class="inp-form" /></td>
+			<td><input type="text" class="inp-form" name="Firstname" /></td>
 			<td></td>
 		</tr>
 		<tr>
 			<th valign="top">Last Name:</th>
-			<td><input type="text" class="inp-form-error" /></td>
+			<td><input type="text" class="inp-form-error" name ="Lastname"/></td>
 			<td>
 			<div class="error-left"></div>
 			<div class="error-inner">This field is required.</div>
@@ -429,19 +441,20 @@ $(document).pngFix( );
 		</tr>
                 <tr>
 			<th valign="top">E-mail:</th>
-			<td><input type="text" class="inp-form-error" /></td>
+			<td><input type="text" class="inp-form-error" id = "email" name ="email" value="" /></td>
 			<td>
-			<div class="error-left"></div>
+			
+                        <div class="error-left"></div>
 			<div class="error-inner">This field is required.</div>
 			</td>
+                       
+                        
 		</tr>
                 <tr>
 			<th valign="top">Password:</th>
-			<td><input type="password" class="inp-form-error" /></td>
+			<td><input type="password" class="inp-form-error" name ="Password" /></td>
 			<td>
-			<div class="error-left"></div>
-			<div class="error-inner">This field is required.</div>
-			</td>
+			
 		</tr>
                 <tr>
 			<th valign="top">Confirm Password:</th>
@@ -454,7 +467,7 @@ $(document).pngFix( );
 		<tr>
 		<th valign="top">Category:</th>
 		<td>	
-		<select  class="styledselect_form_1">
+		<select  class="styledselect_form_1" name ="Category">
 			<option value="E">Entreprise</option>
 			<option value="A">Auditeur</option>
 		<!--    <option value="">Categories</option>
@@ -603,16 +616,22 @@ $(document).pngFix( );
 	<div class="bubble-right"></div></td>
 	</tr>
   -->
+   
 	<tr>
 		<th>&nbsp;</th>
+               
 		<td valign="top">
-			<input type="button" value="" class="form-submit" />
+			<input type="Submit" value="" id ="btn_submit"name ="btn_submit" class="form-submit" onclick="checkfields();" />
 			<input type="reset" value="" class="form-reset"  />
+                   
 		</td>
 		<td></td>
 	</tr>
+  
+
 	</table>
-	<!-- end id-form  -->
+
+   
 
 	</td>
 	<td>
@@ -707,18 +726,6 @@ $(document).pngFix( );
 
 
 
-
-
-
-
-
-
- 
-
-
-
-
-
 <div class="clear">&nbsp;</div>
 
 </div>
@@ -740,6 +747,56 @@ $(document).pngFix( );
 	<div class="clear">&nbsp;</div>
 </div>
 <!-- end footer -->
- 
+</form> 
+<%
+   if (request.getParameter("btn_submit") != null)
+     {
+    Obj_Account Acc_Obj = new Obj_Account();
+
+    
+    String Acc_Firstname = request.getParameter("Firstname");
+    String Acc_Lastname  = request.getParameter("Lastname");
+    String Acc_categ     = request.getParameter("Category");
+    String Acc_pass      = request.getParameter("Password");
+    String Acc_email     = request.getParameter("email");   
+   
+    
+    {
+        %>
+      <script>
+          
+           
+      function checkfields()
+        {
+        var v_email = document.getElementById("email").value;
+        if (v_email=="" || v_email == null)
+        {
+        alert("Please Enter Abdo E-mail");
+        email.focus();
+        return false;
+        }
+        return true;
+        }    
+       
+      </script>
+   <% }
+    Acc_Obj.setAcc_email(Acc_email); 
+    Acc_Obj.setAcc_Firstname(Acc_Firstname);
+    Acc_Obj.setAcc_Lastname(Acc_Lastname);
+    Acc_Obj.setAcc_Category(Acc_categ);
+    Acc_Obj.setAcc_Password(Acc_pass);
+    Account acc_Business = new Account();
+    acc_Business.Submit_Acc(Acc_Obj);
+    
+   
+    }
+ %>
+ <!--<script type="text/javascript"> 
+        alert("Check Input"); 
+        </script> -->
 </body>
 </html>
+
+<!-- Jsp get data and call java method -->
+ 
+ 
