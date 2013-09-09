@@ -8,6 +8,6 @@
         <res-auth>Container</res-auth>
     </resource-ref>
     <welcome-file-list>
-        <welcome-file>LoginPage.html</welcome-file>
+        <welcome-file>Account.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

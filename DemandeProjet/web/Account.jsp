@@ -34,6 +34,11 @@
 <script src="js/jquery/ui.core.js" type="text/javascript"></script>
 <script src="js/jquery/ui.checkbox.js" type="text/javascript"></script>
 <script src="js/jquery/jquery.bind.js" type="text/javascript"></script>
+<!--  msgbox jquery -->
+<link href="Styles/msgBoxLight.css" rel="stylesheet" type="text/css">
+<script src="Scripts/jquery-1.4.1.js" type="text/javascript"></script>
+<script src="js/jquery/jquery.msgBox.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 $(function(){
 	$('input').checkBox();
@@ -192,7 +197,7 @@ $(document).pngFix( );
 </head>
 <body> 
 <!-- Start: page-top-outer -->
-<form  method="get" name="Account">
+<form>
 <div id="page-top-outer">    
 
 <!-- Start: page-top -->
@@ -289,7 +294,7 @@ $(document).pngFix( );
 		<div class="nav">
 		<div class="table">
 		
-		<ul class="select"><li><a href="HomePage.html"><b>Acceuil</b><!--[if IE 7]><!--></a><!--<![endif]-->
+		<ul class="select"><li><a href="HomePage.jsp"><b>Acceuil</b><!--[if IE 7]><!--></a><!--<![endif]-->
 		<!--[if lte IE 6]><table><tr><td><![endif]-->
 		<div class="select_sub">
 		<!--	<ul class="sub">
@@ -412,62 +417,71 @@ $(document).pngFix( );
 		<!--  start step-holder -->
 		<div id="step-holder">
 			<div class="step-no">1</div>
-			<div class="step-dark-left"><a href="">Add product details</a></div>
+			<div class="step-dark-left"><a href="">Créer un Compte</a></div>
 			<div class="step-dark-right">&nbsp;</div>
-			<div class="step-no-off">2</div>
+			<!--<div class="step-no-off">2</div>
 			<div class="step-light-left">Select related products</div>
 			<div class="step-light-right">&nbsp;</div>
 			<div class="step-no-off">3</div>
 			<div class="step-light-left">Preview</div>
 			<div class="step-light-round">&nbsp;</div>
-			<div class="clear"></div>
+			<div class="clear"></div> -->
 		</div>
 		<!--  end step-holder -->
 	
 		<!-- start id-form -->
 		<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
 		<tr>
-			<th valign="top">First Name:</th>
-			<td><input type="text" class="inp-form" name="Firstname" /></td>
-			<td></td>
+			<th valign="top">Prénom</th>
+			<td><input type="text" class="inp-form" id = "Firstname" name="Firstname" /></td>
+			<td>
+                           
+			<div class="error-left" id ="err_fname_left" style="visibility: hidden"></div>
+			<div class="error-inner" id="error" style="visibility: hidden">Ce champ est obligatoire.</div>
+			
+                        </td>
 		</tr>
 		<tr>
-			<th valign="top">Last Name:</th>
-			<td><input type="text" class="inp-form-error" name ="Lastname"/></td>
+			<th valign="top">Nom</th>
+			<td><input type="text" class="inp-form-error" id ="Lastname" name ="Lastname"/></td>
 			<td>
-			<div class="error-left"></div>
-			<div class="error-inner">This field is required.</div>
+			<div class="error-left" id ="err_lname_left" style="visibility: hidden"></div>
+			<div class="error-inner" id ="err_lname" style="visibility: hidden">Ce champ est obligatoire.</div>
 			</td>
 		</tr>
                 <tr>
-			<th valign="top">E-mail:</th>
+			<th valign="top">E-mail</th>
 			<td><input type="text" class="inp-form-error" id = "email" name ="email" value="" /></td>
 			<td>
 			
-                        <div class="error-left"></div>
-			<div class="error-inner">This field is required.</div>
+                        <div class="error-left" id ="err_email_left" style="visibility: hidden"></div>
+			<div class="error-inner" id ="err_email" style="visibility: hidden">Ce champ est obligatoire.</div>
 			</td>
                        
                         
 		</tr>
                 <tr>
-			<th valign="top">Password:</th>
-			<td><input type="password" class="inp-form-error" name ="Password" /></td>
+			<th valign="top">Mot de passe</th>
+			<td><input type="password" class="inp-form-error" id="Password" name ="Password" /></td>
 			<td>
-			
+                        <div class="error-left" id ="err_pass_left" style="visibility: hidden"></div>
+			<div class="error-inner" id ="err_pass" style="visibility: hidden">Ce champ est obligatoire.</div>
+                        </td>
 		</tr>
                 <tr>
-			<th valign="top">Confirm Password:</th>
-			<td><input type="password" class="inp-form-error" /></td>
+			<th valign="top">Confirmer mot de passe</th>
+			<td><input type="password" class="inp-form-error" id="cPass" name ="cPass" /></td>
 			<td>
-			<div class="error-left"></div>
-			<div class="error-inner">This field is required.</div>
+                        <div class="error-left" id ="err_pass_conf_left" style="visibility: hidden"></div>
+			<div class="error-inner" id ="err_conf_pass" style="visibility: hidden"> Non correctement confirmé.</div>
+			<div class="error-left" id ="err_cpass_left" style="visibility: hidden"></div>
+			<div class="error-inner" id ="err_cpass" style="visibility: hidden">Ce champ est obligatoire.</div>
 			</td>
 		</tr>
 		<tr>
-		<th valign="top">Category:</th>
+		<th valign="top">Catégorie:</th>
 		<td>	
-		<select  class="styledselect_form_1" name ="Category">
+		<select  class="styledselect_form_1"id="Category" name ="Category">
 			<option value="E">Entreprise</option>
 			<option value="A">Auditeur</option>
 		<!--    <option value="">Categories</option>
@@ -491,7 +505,11 @@ $(document).pngFix( );
 		</select>
 		</td>
                 -->
-		<td></td>
+		<td>
+                    <div class="error-left" id ="err_categ_left" style="visibility: hidden"></div>
+		    <div class="error-inner" id="err_categ" style="visibility: hidden">Ce champ est obligatoire.</div>
+			
+                </td>
 		</tr> 
 		<!--<tr>
 			<th valign="top">Price:</th>
@@ -621,7 +639,7 @@ $(document).pngFix( );
 		<th>&nbsp;</th>
                
 		<td valign="top">
-			<input type="Submit" value="" id ="btn_submit"name ="btn_submit" class="form-submit" onclick="checkfields();" />
+			<input type="Submit" value="" id ="btn_submit"name ="btn_submit" class="form-submit" onclick="return checkfields();" />
 			<input type="reset" value="" class="form-reset"  />
                    
 		</td>
@@ -657,7 +675,7 @@ $(document).pngFix( );
 					Lorem ipsum dolor sit amet consectetur
 					adipisicing elitsed do eiusmod tempor.
 					<ul class="greyarrow">
-						<li><a href="">Click here to visit</a></li> 
+						<li><a href="si.isae.edu.lb">Click here to visit</a></li> 
 						<li><a href="">Click here to visit</a> </li>
 					</ul>
 				</div>
@@ -747,39 +765,118 @@ $(document).pngFix( );
 	<div class="clear">&nbsp;</div>
 </div>
 <!-- end footer -->
-</form> 
-<%
-   if (request.getParameter("btn_submit") != null)
-     {
-    Obj_Account Acc_Obj = new Obj_Account();
 
-    
+  <script>     
+     function checkfields()
+        {
+        var v_email = document.getElementById("email").value;
+        if (v_email==="" || v_email === null)
+        {
+        //alert("Please Enter E-mail");
+        document.getElementById('err_email').style.visibility='visible';
+        document.getElementById('err_email_left').style.visibility='visible';
+        email.focus();
+        return false;
+        
+        }
+        var v_firstname = document.getElementById("Firstname").value;
+        if (v_firstname==="" || v_firstname === null)
+        {
+        document.getElementById('error').style.visibility='visible';
+        document.getElementById('err_fname_left').style.visibility='visible';
+        //alert("Please Enter your Firstname");
+        Firstname.focus();
+        return false;
+        
+        }
+        var v_lastname = document.getElementById("Lastname").value;
+        if (v_lastname==="" || v_lastname === null)
+        {
+        document.getElementById('err_lname').style.visibility='visible';
+        document.getElementById('err_lname_left').style.visibility='visible';
+        //alert("Please Enter your Lastname");
+        Lastname.focus();
+        return false;
+        
+        }
+        var v_password = document.getElementById("Password").value;
+        if (v_password==="" || v_password === null)
+        {
+        document.getElementById('err_pass_left').style.visibility='visible';
+        document.getElementById('err_pass').style.visibility='visible';
+        
+         //alert("Please Enter your Password");
+        Password.focus();
+        return false;
+        
+        }
+        var v_cpass = document.getElementById("cPass").value;
+        if (v_cpass==="" || v_cpass === null)
+        {
+        document.getElementById('err_cpass_left').style.visibility='visible';
+        document.getElementById('err_cpass').style.visibility='visible';
+        
+            //alert("Please Enter your Password");
+        Password.focus();
+        return false;
+        
+        }
+        var v_categ = document.getElementById("Category").value;
+        if (v_categ==="" || v_categ === null)
+        {
+        document.getElementById('err_categ_left').style.visibility='visible';
+        document.getElementById('err_categ').style.visibility='visible';
+        
+        //alert("Please Enter your Category");
+        Category.focus();
+        return false;
+        
+        }
+        var v_cpass = document.getElementById("cPass").value;
+        var v_password = document.getElementById("Password").value;
+        if(v_cpass !== v_password && v_cpass !== null && v_password !== null ) 
+        {
+         
+        document.getElementById('err_conf_pass').style.visibility ='visible';
+        document.getElementById('err_pass_conf_left').style.visibility ='visible';
+        //  alert("Password is not confiremed successfuly");
+       //jquery.msgBox('Password is not confiremed successfuly','Password Confirmation','Error');
+       //$.msgBox({
+         //           title:"Password Confirmation",
+         //           content:"Password is not confiremed successfuly",
+         //           type:"Error"
+         //           });
+                   
+          
+        cPass.focus();
+        return false;   
+        }
+        
+        
+        
+   else
+   {
+       document.getElementById('err_email_left').style.visibility ='hidden';
+       document.getElementById('err_email').style.visibility ='hidden';
+       document.getElementById('error').style.visibility ='hidden'; 
+       document.getElementById('err_fname_left').style.visibility ='hidden';
+       document.getElementById('err_lname').style.visibility ='hidden';
+       document.getElementById('err_lname_left').style.visibility ='hidden';
+       document.getElementById('err_pass_left').style.visibility ='hidden';
+       document.getElementById('err_pass').style.visibility ='hidden';
+       document.getElementById('err_cpass_left').style.visibility ='hidden';
+       document.getElementById('err_cpass').style.visibility ='hidden';
+       document.getElementById('err_categ_left').style.visibility ='hidden';
+       document.getElementById('err_categ').style.visibility ='hidden';
+       document.getElementById('err_conf_pass').style.visibility ='hidden';
+       document.getElementById('err_pass_conf_left').style.visibility ='hidden';
+    <% 
+    Obj_Account Acc_Obj = new Obj_Account();   
     String Acc_Firstname = request.getParameter("Firstname");
     String Acc_Lastname  = request.getParameter("Lastname");
     String Acc_categ     = request.getParameter("Category");
     String Acc_pass      = request.getParameter("Password");
-    String Acc_email     = request.getParameter("email");   
-   
-    
-    {
-        %>
-      <script>
-          
-           
-      function checkfields()
-        {
-        var v_email = document.getElementById("email").value;
-        if (v_email=="" || v_email == null)
-        {
-        alert("Please Enter Abdo E-mail");
-        email.focus();
-        return false;
-        }
-        return true;
-        }    
-       
-      </script>
-   <% }
+    String Acc_email     = request.getParameter("email");  
     Acc_Obj.setAcc_email(Acc_email); 
     Acc_Obj.setAcc_Firstname(Acc_Firstname);
     Acc_Obj.setAcc_Lastname(Acc_Lastname);
@@ -787,13 +884,16 @@ $(document).pngFix( );
     Acc_Obj.setAcc_Password(Acc_pass);
     Account acc_Business = new Account();
     acc_Business.Submit_Acc(Acc_Obj);
+   %>
     
-   
+    } 
     }
- %>
+ </script>
+   
  <!--<script type="text/javascript"> 
         alert("Check Input"); 
         </script> -->
+</form> 
 </body>
 </html>
 

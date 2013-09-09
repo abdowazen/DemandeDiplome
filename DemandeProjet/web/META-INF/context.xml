@@ -3,7 +3,7 @@
 <!--
 <Context antiJARLocking="true" path="/IFPWAFCAD"/>
 -->
-<Context antiJARLocking="true" path="/HomePage">
+<Context antiJARLocking="true" path="">
 <!-- 
    path="/tompool">
    maxActive: Maximum number of database connections in pool. Make sure you
