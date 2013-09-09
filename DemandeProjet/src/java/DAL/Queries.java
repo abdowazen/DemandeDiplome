@@ -14,13 +14,14 @@ public class Queries {
     {
     String sInsert="";
     sInsert = "INSERT INTO `connpool`.`account`" +
-"(`Acc_email`,`Acc_Firstname`,`Acc_Lastname`,`Acc_Password`,`Acc_Category`)" +
+"(`Acc_email`,`Acc_Firstname`,`Acc_Lastname`,`Acc_Password`,`Acc_username`,`Acc_Category`)" +
 "VALUES " +
 "('"
   + acc.getAcc_email() +"','"
   + acc.getAcc_Firstname() +"','"
   + acc.getAcc_Lastname() +"','"
   + acc.getAcc_Password() + "','"
+  + acc.getAcc_username() + "','"
   + acc.getAcc_Category()    
   + "')";
     
