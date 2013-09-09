@@ -10,13 +10,33 @@ package ObjectBusiness;
  */
 public class Obj_Account {
     
-        private String Acc_email;
+        
+    private String Acc_username;
+    /**
+     * Set the value of Acc_username
+     *
+     * @param Acc_username new value of Acc_username
+     */
+    public void setAcc_username(String Acc_username) {
+        this.Acc_username = Acc_username;
+    }
+    private String getAcc_username;
+
+    /**
+     * Get the value of getAcc_username
+     *
+     * @return the value of getAcc_username
+     */
+    public String getAcc_username() {
+        return Acc_username;
+    }
 
     /**
      * Get the value of Acc_email
      *
      * @return the value of Acc_email
      */
+    private String Acc_email;
     public String getAcc_email() {
         return Acc_email;
     }
