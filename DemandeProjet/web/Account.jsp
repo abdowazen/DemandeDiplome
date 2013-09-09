@@ -461,6 +461,17 @@ $(document).pngFix( );
                         
 		</tr>
                 <tr>
+			<th valign="top">Nom d'utilisateur</th>
+			<td><input type="text" class="inp-form-error" id = "username" name ="username" value="" /></td>
+			<td>
+			
+                        <div class="error-left" id ="err_username_left" style="visibility: hidden"></div>
+			<div class="error-inner" id ="err_username" style="visibility: hidden">Ce champ est obligatoire.</div>
+			</td>
+                       
+                        
+		</tr>
+                <tr>
 			<th valign="top">Mot de passe</th>
 			<td><input type="password" class="inp-form-error" id="Password" name ="Password" /></td>
 			<td>
@@ -799,6 +810,17 @@ $(document).pngFix( );
         return false;
         
         }
+        var v_username = document.getElementById("username").value;
+        if (v_username==="" || v_username === null)
+        {
+        document.getElementById('err_username').style.visibility='visible';
+        document.getElementById('err_username_left').style.visibility='visible';
+        //alert("Please Enter your Lastname");
+        Lastname.focus();
+        return false;
+        
+        }
+        
         var v_password = document.getElementById("Password").value;
         if (v_password==="" || v_password === null)
         {
@@ -876,8 +898,10 @@ $(document).pngFix( );
     String Acc_Lastname  = request.getParameter("Lastname");
     String Acc_categ     = request.getParameter("Category");
     String Acc_pass      = request.getParameter("Password");
-    String Acc_email     = request.getParameter("email");  
-    Acc_Obj.setAcc_email(Acc_email); 
+    String Acc_email     = request.getParameter("email"); 
+    String Acc_username  = request.getParameter("username");
+    Acc_Obj.setAcc_email(Acc_email);
+    Acc_Obj.setAcc_username(Acc_username);
     Acc_Obj.setAcc_Firstname(Acc_Firstname);
     Acc_Obj.setAcc_Lastname(Acc_Lastname);
     Acc_Obj.setAcc_Category(Acc_categ);
